@@ -1,6 +1,6 @@
 # SIPAMAT — Eye Infection Expert System
 
-![Logo](docs/screenshots/logo-eye.png)
+![Logo](docs/screenshots/logo_eye.png)
 
 A web-based expert system that provides a preliminary diagnosis of eye infections using the **Certainty Factor (CF)** method. Built with **Laravel 11 + React (Inertia.js)**, patients select the symptoms they're experiencing and the system calculates a confidence value for each possible disease based on an expert-defined knowledge base.
 
