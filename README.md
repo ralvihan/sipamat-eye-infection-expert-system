@@ -1,15 +1,22 @@
 # SIPAMAT — Eye Infection Expert System
 
-![Logo](docs/screenshots/logo_eye.png)
+<p align="center">
+  <img src="docs/screenshots/logo_eye.png" width="150" alt="SIPAMAT Logo" />
+</p>
 
 A web-based expert system that provides a preliminary diagnosis of eye infections using the **Certainty Factor (CF)** method. Built with **Laravel 11 + React (Inertia.js)**, patients select the symptoms they're experiencing and the system calculates a confidence value for each possible disease based on an expert-defined knowledge base.
 
 > **Note:** The application UI and medical terminology are in Indonesian (Bahasa Indonesia), as this system was built for local clinical use in Indonesia.
 
-![Status](https://img.shields.io/badge/status-development-yellow)
-![Laravel](https://img.shields.io/badge/Laravel-11-FF2D20?logo=laravel&logoColor=white)
-![React](https://img.shields.io/badge/React-Inertia.js-61DAFB?logo=react&logoColor=white)
-![License](https://img.shields.io/badge/license-MIT-blue)
+<p align="center">
+  <img src="https://img.shields.io/badge/status-development-yellow?style=for-the-badge" alt="Status" />
+  <img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel" />
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP" />
+  <img src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/MIT_License-yellow?style=for-the-badge" alt="License" />
+</p>
 
 ![Landing Page](docs/screenshots/landing-page.png)
 
@@ -95,7 +102,6 @@ Visit the app at `http://localhost:8000`.
 |------|-------|----------|
 | Admin | admin@sipamat.com | password |
 | Patient | raihan@sipamat.com | password |
-| Patient | sultan@sipamat.com | password |
 
 ---
 
