@@ -1,58 +1,124 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# SIPAMAT — Eye Infection Expert System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A web-based expert system that provides a preliminary diagnosis of eye infections using the **Certainty Factor (CF)** method. Built with **Laravel 11 + React (Inertia.js)**, patients select the symptoms they're experiencing and the system calculates a confidence value for each possible disease based on an expert-defined knowledge base.
 
-## About Laravel
+> **Note:** The application UI and medical terminology are in Indonesian (Bahasa Indonesia), as this system was built for local clinical use in Indonesia.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+![Status](https://img.shields.io/badge/status-development-yellow)
+![Laravel](https://img.shields.io/badge/Laravel-11-FF2D20?logo=laravel&logoColor=white)
+![React](https://img.shields.io/badge/React-Inertia.js-61DAFB?logo=react&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-blue)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+![Landing Page](docs/screenshots/landing-page.png)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 📖 About
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+SIPAMAT was developed to help with early detection of 4 types of eye infections, based on interviews with an experienced eye laboratory analyst:
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+| Code | Disease | Referral Needed |
+|------|---------|:---:|
+| P001 | Bacterial Corneal Ulcer | ✅ |
+| P002 | Fungal Corneal Ulcer | ✅ |
+| P003 | Bacterial Conjunctivitis | — |
+| P004 | Contact Lens–Related Eye Infection | ✅ |
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+Diagnosis is calculated from **15 symptoms (G001–G015)**, each with an expert CF value (*cf_expert*), combined with the patient's answer (*cf_user*: Yes = 1.0, Maybe = 0.6, No = 0.0) using the standard CF combination formula.
 
-## Agentic Development
+## ✨ Key Features
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+- 🩺 **Certainty Factor–based diagnosis** — patients answer symptom questions and the system calculates a confidence score per disease.
+- 📄 **Diagnosis history** & **PDF export** of results (DomPDF).
+- 🔐 **Full authentication** — register, login, email verification, password reset (Laravel Breeze style).
+- 🛠️ **Admin panel**:
+  - Manage diseases & symptoms (CRUD)
+  - Manage the knowledge base (expert CF values per disease-symptom pair)
+  - View all patient diagnosis history
+  - Statistics dashboard (disease count, symptom count, diagnoses, patients)
+- 👤 **Role-based access** — separate `admin` and `patient` middleware.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Backend:** Laravel 11 (PHP)
+- **Frontend:** React 18 + Inertia.js
+- **Styling:** Tailwind CSS
+- **Build tool:** Vite
+- **PDF:** barryvdh/laravel-dompdf
+- **Database:** MySQL (configurable via `config/database.php`)
+
+---
+
+## 📸 Screenshots
+
+### Diagnosis Result
+![Diagnosis Result](docs/screenshots/diagnose-result.png)
+
+---
+
+## 🚀 Local Installation
 
 ```bash
-composer require laravel/boost --dev
+# 1. Clone the repository
+git clone https://github.com/username/sipamat.git
+cd sipamat
 
-php artisan boost:install
+# 2. Install backend dependencies
+composer install
+
+# 3. Install frontend dependencies
+npm install
+
+# 4. Copy .env and generate app key
+cp .env.example .env
+php artisan key:generate
+
+# 5. Configure your database in .env, then run migrations + seeder
+php artisan migrate --seed
+
+# 6. Start the backend server
+php artisan serve
+
+# 7. Start the Vite dev server (in a separate terminal)
+npm run dev
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Visit the app at `http://localhost:8000`.
 
-## Contributing
+### Default Accounts (from seeder)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+| Role | Email | Password |
+|------|-------|----------|
+| Admin | admin@sipamat.com | password |
+| Patient | raihan@sipamat.com | password |
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 📁 Project Structure (overview)
 
-## Security Vulnerabilities
+```
+app/
+ ├─ Http/Controllers/
+ │   ├─ Admin/AdminController.php     # CRUD for diseases, symptoms, knowledge base, diagnoses
+ │   └─ DiagnosisController.php       # Patient diagnosis flow + PDF export
+ ├─ Services/CertaintyFactorService.php  # Core CF calculation logic
+ └─ Models/                           # Disease, Symptom, DiseaseSymptom, Diagnosis, User
+resources/js/
+ ├─ Pages/Admin/                      # Admin panel pages
+ ├─ Pages/Patient/                    # Diagnose, DiagnoseResult, History
+ └─ Pages/Welcome.jsx                 # Landing page
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## 👤 Author
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- **Raihan Alvian** ([@ralvihan](https://github.com/ralvihan))
+
+---
+
+## 📄 License
+
+This project was built for academic purposes (Informatics Engineering coursework, Jakarta Global University) and is free to use for learning purposes.
