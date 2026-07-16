@@ -62,8 +62,8 @@ Diagnosis is calculated from **15 symptoms (G001–G015)**, each with an expert 
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/username/sipamat.git
-cd sipamat
+git clone https://github.com/ralvihan/sipamat-eye-infection-expert-system.git
+cd sipamat-eye-infection-expert-system
 
 # 2. Install backend dependencies
 composer install
@@ -93,6 +93,7 @@ Visit the app at `http://localhost:8000`.
 |------|-------|----------|
 | Admin | admin@sipamat.com | password |
 | Patient | raihan@sipamat.com | password |
+| Patient | sultan@sipamat.com | password |
 
 ---
 
